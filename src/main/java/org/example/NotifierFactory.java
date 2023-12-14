@@ -6,7 +6,7 @@ public class NotifierFactory {
             case "1" -> new SMSNotifier();
             case "2" -> new EmailNotifier();
             case "3" -> new PushNotifier();
-            default -> null;
+            default -> throw new IllegalArgumentException("Notificação não reconhecida: " + notifierType);
         };
     }
 }
