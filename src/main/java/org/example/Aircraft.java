@@ -1,9 +1,10 @@
 package org.example;
 
 public class Aircraft {
+
     private final Long id;
-    private final String model;
-    private final int capacity;
+    private String model;
+    private int capacity;
 
     public Aircraft(Long id, String model, int capacity) {
         this.id = id;
@@ -21,5 +22,21 @@ public class Aircraft {
 
     public int getCapacity() {
         return this.capacity;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public String toString() {
+        return "Aircraft{" +
+                "id=" + this.id +
+                ", model='" + this.model + '\'' +
+                ", capacity=" + this.capacity +
+                '}';
     }
 }

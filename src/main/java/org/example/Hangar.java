@@ -9,7 +9,7 @@ public class Hangar {
     private final String name;
     private final String location;
 
-    private List<Aircraft> Aircrafts = new ArrayList<>();
+    private final List<Aircraft> aircrafts = new ArrayList<>();
 
     public Hangar(Long id, String name, String location) {
         this.id = id;
@@ -18,19 +18,19 @@ public class Hangar {
     }
 
     public void addAircraft(Aircraft aircraft) {
-        this.Aircrafts.add(aircraft);
+        this.aircrafts.add(aircraft);
     }
 
     public List<Aircraft> getAircrafts() {
-        return this.Aircrafts;
+        return this.aircrafts;
     }
 
     public Aircraft getAircraftById(Long id) {
-        return this.Aircrafts.stream().filter(ac -> Objects.equals(ac.getId(), id)).findFirst().orElse(null);
+        return this.aircrafts.stream().filter(ac -> Objects.equals(ac.getId(), id)).findFirst().orElse(null);
     }
 
     public void removeAircraftById(Long id) {
-        this.Aircrafts.removeIf(ac -> Objects.equals(ac.getId(), id));
+        this.aircrafts.removeIf(ac -> Objects.equals(ac.getId(), id));
     }
 
     public Long getId() {

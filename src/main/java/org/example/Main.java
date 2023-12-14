@@ -4,12 +4,16 @@ public class Main {
     public static void main(String[] args) {
         var hangar = new Hangar(1L, "Hangar 1", "Location 1");
 
-        var aircraftB747 = new Aircraft(1L, "Boeing 747", 400);
-        var aircraftA380 = new Aircraft(2L, "Airbus A380", 500);
+        var aircraftFactory = new AircraftFactory();
 
-        hangar.addAircraft(aircraftB747);
-        hangar.addAircraft(aircraftA380);
+        var boeingB747 = aircraftFactory.createAircraft("Boeing747", 3);
+        var airbusA380 = aircraftFactory.createAircraft("AirbusA380", 5);
+
+        boeingB747.forEach(hangar::addAircraft);
+        airbusA380.forEach(hangar::addAircraft);
 
         var notifierFactory = new NotifierFactory();
+
+        System.out.println(hangar.getAircrafts());
     }
 }
