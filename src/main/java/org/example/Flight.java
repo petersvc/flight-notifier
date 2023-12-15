@@ -1,221 +1,107 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Flight {
-    private Long code;
-    private ArrayList<Passenger> passengers;
-    private Status status;
+
+    private long id;
     private String departures;
     private String arrivals;
-    private String gate;
     private String date;
     private String departureTime;
     private String arrivalTime;
+    private String gate;
     private Aircraft aircraft;
-    private int availableSeats;
-    private int occupiedSeats;
+    private final List<Passenger> passengers = new ArrayList<>();
+    public State state;
 
-    
-    public Flight(
-            Long code,
-            String departures,
-            String arrivals,
-            String gate,
-            String date,
-            String departureTime,
-            String arrivalTime,
-            Aircraft aircraft){
-        this.code = code;
-        this.passengers = new ArrayList<Passenger>();
-        this.status = new Programado();
+
+    public Flight(long id, String departures, String arrivals, String date, String departureTime, String arrivalTime, String gate, Aircraft aircraft) {
+        this.id = id;
         this.departures = departures;
         this.arrivals = arrivals;
-        this.gate = gate;
         this.date = date;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
-        this.aircraft = aircraft;
-        this.availableSeats = aircraft.getCapacity();
-        this.occupiedSeats = 0;
-        
-    }
-
-    public Long getCode(){
-        return this.code;
-    }
-
-    public Status getStatus(){
-        return this.status;
-    }
-
-    public String getGate(){
-        return this.gate;
-    }
-
-    public String getDate(){
-        return this.date;
-    }
-
-    public String getDepartureTime(){
-        return this.departureTime;
-    }
-
-    public String getArrivalTime(){
-        return this.arrivalTime;
-    }
-
-    public Aircraft getAircraft(){
-        return this.aircraft;
-    }
-
-    public int getAvailableSeats(){
-        return this.availableSeats;
-    }
-
-    public int getOccupiedSeats(){
-        return this.occupiedSeats;
-    }
-
-    public void setCode(Long code){
-        this.code = code;
-    }
-
-    public void setStatus(Status status){
-        this.status = status;
-    }
-
-    public void setGate(String gate){
         this.gate = gate;
+        this.aircraft = aircraft;
+        this.state = new Boarding(this);
     }
 
-    public void setDate(String date){
+    public void addPassenger(Passenger passenger) {
+        passengers.add(passenger);
+    }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void removePassenger(Passenger passenger) {
+        passengers.remove(passenger);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getDepartures() {
+        return departures;
+    }
+
+    public void setDepartures(String departures) {
+        this.departures = departures;
+    }
+
+    public String getArrivals() {
+        return arrivals;
+    }
+
+    public void setArrivals(String arrivals) {
+        this.arrivals = arrivals;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public void setDepartureTime(String departureTime){
+    public String getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
     }
 
-    public void setArrivalTime(String arrivalTime){
+    public String getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    public void setAircraft(Aircraft aircraft){
+    public String getGate() {
+        return gate;
+    }
+
+    public void setGate(String gate) {
+        this.gate = gate;
+    }
+
+    public Aircraft getAircraft() {
+        return aircraft;
+    }
+
+    public void setAircraft(Aircraft aircraft) {
         this.aircraft = aircraft;
     }
-
-    public void setAvailableSeats(int availableSeats){
-        this.availableSeats = availableSeats;
-    }
-
-    public void setOccupiedSeats(int occupiedSeats){
-        this.occupiedSeats = occupiedSeats;
-    }
-
-    public void cancelFlight() throws Exception{
-        try{
-            this.status.cancelFlight();
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-
-    public void confirmFlight() throws Exception{
-        try{
-            this.status.confirmFlight();
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-    public void changeGate(String newGate) throws Exception{
-        try{
-            this.status.changeGate(newGate);
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-    public void delayFlight(Long minutes) throws Exception{
-        try{
-            this.status.delayFlight(minutes);
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-    public void nextStatus(Status status) throws Exception{
-        try{
-            this.status.nextStatus(status);
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-    public void addPassenger(Passenger passenger) throws Exception{
-        try{
-            this.passengers.add(passenger);
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-    public void removePassenger(Passenger passenger) throws Exception{
-        try{
-            this.passengers.remove(passenger);
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-    public void addOccupiedSeats(int occupiedSeats) throws Exception{
-        try{
-            this.occupiedSeats += occupiedSeats;
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-    public void removeOccupiedSeats(int occupiedSeats) throws Exception{
-        try{
-            this.occupiedSeats -= occupiedSeats;
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-    public void addAvailableSeats(int availableSeats) throws Exception{
-        try{
-            this.availableSeats += availableSeats;
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-    public void removeAvailableSeats(int availableSeats) throws Exception{
-        try{
-            this.availableSeats -= availableSeats;
-        }catch(Exception e){
-            throw new Exception(e);
-        }
-    }
-
-    public String toString(){
-        return "Flight{" +
-                "code=" + this.code +
-                ", status='" + this.status + '\'' +
-                ", gate='" + this.gate + '\'' +
-                ", date='" + this.date + '\'' +
-                ", departureTime='" + this.departureTime + '\'' +
-                ", arrivalTime='" + this.arrivalTime + '\'' +
-                ", aircraft='" + this.aircraft + '\'' +
-                ", availableSeats='" + this.availableSeats + '\'' +
-                ", occupiedSeats='" + this.occupiedSeats + '\'' +
-                '}';
-    }
-
-
-    
 }
