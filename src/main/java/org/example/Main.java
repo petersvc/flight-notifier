@@ -1,5 +1,10 @@
 package org.example;
 
+import org.example.factories.NotifierFactory;
+import org.example.models.Passenger;
+import org.example.repositories.AircraftRepository;
+import org.example.repositories.FlightRepository;
+
 import java.util.Scanner;
 
 public class Main {
@@ -15,16 +20,19 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("--------------------- Menu Principal ---------------------");
+            System.out.println("Bem-Vindo a JetAirlines");
+            System.out.println("---------------Selecione uma opção abaixo:-----------------");
             System.out.println("1 - Cadastrar Voo");
             System.out.println("2 - Adicionar Passageiro");
             System.out.println("3 - Remover Passageiro");
+            System.out.println("4 - Alterar Estado do Voo");
+            System.out.println("5 - Mudar Portão de Embarque");
 
             var option = scanner.nextInt();
 
             switch (option) {
                 case 1:
-                    System.out.println("Menu Principal > Cadastrar Voo");
+                    System.out.println("-----Menu Principal > Cadastrar Voo------");
                     System.out.println("Aeronaves disponíveis: ");
                     var availableAircrafts = aircraftRepository.findByAvailability(flightRepository);
                     availableAircrafts.forEach(aircraft -> {
@@ -83,7 +91,51 @@ public class Main {
                     var notifier = NotifierFactory.create(notificationOption);
 
                     flight.addPassenger(new Passenger(passengerName, passengerCpf, notifier));
+                    break;
 
+                case 3:
+                    System.out.println("Menu Principal > Remover Passageiro");
+
+                    System.out.println("Informe o código do voo: ");
+                    var flightIdToRemove = scanner.nextLong();
+                    var flightToRemove = flightRepository.findById(flightIdToRemove);
+
+                    System.out.println("Informe o nome do passageiro: ");
+                    var passengerNameToRemove = scanner.next();
+
+                    flightToRemove.removePassenger(passengerNameToRemove);
+                    break;
+
+                case 4:
+                    System.out.println("Menu Principal > Alterar Estado do Voo");
+
+                    System.out.println("Informe o código do voo: ");
+                    var flightIdToChangeState = scanner.nextLong();
+                    var flightToChangeState = flightRepository.findById(flightIdToChangeState);
+
+                    System.out.println("Informe o novo estado do voo: ");
+                    System.out.println("1 - Cancelado");
+                    System.out.println("2 - Confirmado");
+                    System.out.println("3 - Atrasado");
+                    System.out.println("4 - Mudança de portão");
+                    System.out.println("5 - Finalizado");
+                    var stateOption = scanner.nextInt();
+
+                    flightToChangeState.changeState(stateOption);
+                    break;
+
+                case 5:
+                    System.out.println("Menu Principal > Mudar Portão de Embarque");
+
+                    System.out.println("Informe o código do voo: ");
+                    var flightIdToChangeGate = scanner.nextLong();
+                    var flightToChangeGate = flightRepository.findById(flightIdToChangeGate);
+
+                    System.out.println("Informe o novo portão de embarque: ");
+                    var newGate = scanner.next();
+
+                    flightToChangeGate.changeGate(newGate);
+                    break;
                 default:
                     System.out.println("Opção inválida");
                     break;

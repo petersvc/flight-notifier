@@ -1,4 +1,6 @@
-package org.example;
+package org.example.repositories;
+
+import org.example.Flight;
 
 import java.util.ArrayList;
 import java.util.List;

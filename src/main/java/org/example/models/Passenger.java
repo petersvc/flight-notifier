@@ -1,4 +1,4 @@
-package org.example;
+package org.example.models;
 
 public class Passenger implements Notifier {
     private final String name;

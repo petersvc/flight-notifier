@@ -1,4 +1,6 @@
-package org.example;
+package org.example.models;
+
+import org.example.models.Notifier;
 
 public class EmailNotifier implements Notifier {
     @Override

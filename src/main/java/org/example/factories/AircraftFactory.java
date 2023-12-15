@@ -1,4 +1,6 @@
-package org.example;
+package org.example.factories;
+
+import org.example.models.Aircraft;
 
 import java.util.ArrayList;
 import java.util.List;
