@@ -20,8 +20,7 @@ public class Flight {
             LocalDateTime date,
             LocalDateTime departureTime,
             LocalDateTime arrivalTime,
-            Aircraft aircraft
-        Aircraft aircraft){
+            Aircraft aircraft){
         this.code = code;
         this.passengers = new ArrayList<Passenger>();
         this.status = new Programado();
