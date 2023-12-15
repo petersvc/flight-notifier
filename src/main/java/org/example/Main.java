@@ -10,6 +10,8 @@ public class Main {
         aircraftRepository.save("Boeing747", 3);
         aircraftRepository.save("AirbusA380", 5);
 
+        System.out.println("Aeronaves disponíveis: "+ aircraftRepository.findAll().size());
+
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -24,7 +26,8 @@ public class Main {
                 case 1:
                     System.out.println("Menu Principal > Cadastrar Voo");
                     System.out.println("Aeronaves disponíveis: ");
-                    aircraftRepository.findByAvailability(flightRepository).forEach(aircraft -> {
+                    var availableAircrafts = aircraftRepository.findByAvailability(flightRepository);
+                    availableAircrafts.forEach(aircraft -> {
                         System.out.println("Cod: " + aircraft.getId() + " | Modelo: " + aircraft.getModel() + " | Capacidade: " + aircraft.getCapacity());
                     });
 
@@ -36,7 +39,7 @@ public class Main {
                     System.out.println("Informe os dados do Voo a seguir:");
 
                     System.out.print("Informe o código do voo: ");
-                    var code = scanner.nextLong();
+                    var id = scanner.nextLong();
 
                     System.out.print("Informe o aeroporto de origem: ");
                     var departures = scanner.next();
@@ -56,7 +59,7 @@ public class Main {
                     System.out.print("Informe o portão de embarque: ");
                     var gate = scanner.next();
 
-                    flightRepository.save(new Flight(code, departures, arrivals, date, departureTime, arrivalTime, gate, aircraft));
+                    flightRepository.save(new Flight(id, departures, arrivals, date, departureTime, arrivalTime, gate, aircraft));
                     break;
 
                 case 2:
@@ -64,7 +67,7 @@ public class Main {
 
                     System.out.println("Informe o código do voo: ");
                     var flightId = scanner.nextLong();
-                    var flight = flightRepository.findByCode(flightId);
+                    var flight = flightRepository.findById(flightId);
 
                     System.out.println("Informe o nome do passageiro: ");
                     var passengerName = scanner.next();

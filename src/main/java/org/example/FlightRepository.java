@@ -11,9 +11,9 @@ public class FlightRepository {
         return flights;
     }
 
-    public Flight findByCode(long id) {
+    public Flight findById(long id) {
         for (Flight flight : flights) {
-            if (flight.getCode() == id) {
+            if (flight.getId() == id) {
                 return flight;
             }
         }

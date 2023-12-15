@@ -17,11 +17,22 @@ public class AircraftRepository {
 
     public List<Aircraft> findByAvailability(FlightRepository flightRepository) {
         List<Aircraft> availableAircrafts = new ArrayList<>();
-        for (Flight flight : flightRepository.findAll()) {
-            if (flight.getAircraft() != null) {
-                availableAircrafts.add(flight.getAircraft());
+
+        for (Aircraft aircraft : this.aircrafts) {
+            var isAvailable = true;
+
+            for (Flight flight : flightRepository.findAll()) {
+                if (flight.getAircraft().getId() == aircraft.getId()) {
+                    isAvailable = false;
+                    break;  // Interrompe o loop assim que uma correspondência é encontrada
+                }
+            }
+
+            if (isAvailable) {
+                availableAircrafts.add(aircraft);
             }
         }
+
         return availableAircrafts;
     }
 
