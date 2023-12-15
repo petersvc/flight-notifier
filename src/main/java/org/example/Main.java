@@ -13,7 +13,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("--------------------- Menu Principal ---------------------");
+            System.out.println("Bem-Vindo a JetAirlines");
+            System.out.println("---------------Selecione uma opção abaixo:-----------------");
             System.out.println("1 - Cadastrar Voo");
             System.out.println("2 - Adicionar Passageiro");
             System.out.println("3 - Remover Passageiro");
@@ -22,7 +23,7 @@ public class Main {
 
             switch (option) {
                 case 1:
-                    System.out.println("Menu Principal > Cadastrar Voo");
+                    System.out.println("-----Menu Principal > Cadastrar Voo------");
                     System.out.println("Aeronaves disponíveis: ");
                     aircraftRepository.findByAvailability(flightRepository).forEach(aircraft -> {
                         System.out.println("Cod: " + aircraft.getId() + " | Modelo: " + aircraft.getModel() + " | Capacidade: " + aircraft.getCapacity());
