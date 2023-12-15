@@ -5,7 +5,7 @@ import java.util.List;
 
 public class AircraftFactory {
 
-    public List<Aircraft> createAircraft(String type, int HowManyToCreate){
+    public List<Aircraft> create(String type, int HowManyToCreate){
         List<Aircraft> aircrafts = new ArrayList<>();
         String model = "";
         int capacity = 0;
@@ -29,13 +29,10 @@ public class AircraftFactory {
         }
 
         for (int i = 0; i < HowManyToCreate; i++) {
-            aircrafts.add(new Aircraft(this.generateId(), model, capacity));
+            var id = (long) (Math.random() * 1000000);
+            aircrafts.add(new Aircraft(id, model, capacity));
         }
 
         return aircrafts;
-    }
-
-    private Long generateId() {
-        return (long) (Math.random() * 1000000);
     }
 }

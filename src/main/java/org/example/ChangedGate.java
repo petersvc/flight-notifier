@@ -1,7 +1,7 @@
-public class Changedgate implements Status{
+public class ChangedGate implements Status{
     private Flight flight;
 
-    public Changedgate (Flight flight) {
+    public ChangedGate(Flight flight) {
         this.flight = flight;
         this.flight.notifierPassengers("O seu vôo mudou de portão");
     }

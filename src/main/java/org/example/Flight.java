@@ -1,25 +1,30 @@
+package org.example;
+
+import java.util.ArrayList;
+
 public class Flight {
     private Long code;
-    private ArrayList<Passenger> passageiros;
+    private ArrayList<Passenger> passengers;
     private Status status;
     private String departures;
     private String arrivals;
     private String gate;
-    private LocalDateTime date;
-    private LocalDateTime departureTime;
-    private LocalDateTime arrivalTime;
+    private String date;
+    private String departureTime;
+    private String arrivalTime;
     private Aircraft aircraft;
     private int availableSeats;
     private int occupiedSeats;
 
     
     public Flight(
+            Long code,
             String departures,
             String arrivals,
             String gate,
-            LocalDateTime date,
-            LocalDateTime departureTime,
-            LocalDateTime arrivalTime,
+            String date,
+            String departureTime,
+            String arrivalTime,
             Aircraft aircraft){
         this.code = code;
         this.passengers = new ArrayList<Passenger>();
@@ -48,15 +53,15 @@ public class Flight {
         return this.gate;
     }
 
-    public LocalDateTime getDate(){
+    public String getDate(){
         return this.date;
     }
 
-    public LocalDateTime getDepartureTime(){
+    public String getDepartureTime(){
         return this.departureTime;
     }
 
-    public LocalDateTime getArrivalTime(){
+    public String getArrivalTime(){
         return this.arrivalTime;
     }
 
@@ -84,15 +89,15 @@ public class Flight {
         this.gate = gate;
     }
 
-    public void setDate(LocalDateTime date){
+    public void setDate(String date){
         this.date = date;
     }
 
-    public void setDepartureTime(LocalDateTime departureTime){
+    public void setDepartureTime(String departureTime){
         this.departureTime = departureTime;
     }
 
-    public void setArrivalTime(LocalDateTime arrivalTime){
+    public void setArrivalTime(String arrivalTime){
         this.arrivalTime = arrivalTime;
     }
 
